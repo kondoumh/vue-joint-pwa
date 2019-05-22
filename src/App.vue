@@ -1,17 +1,33 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <InputForm v-on:addNode="addNode" v-on:checkLink="checkLink" />
+    <JointDia v-bind:nodeName="nodeName" v-bind:linkMode="linkMode" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import JointDia from '@/components/JointDia'
+import InputForm from '@/components/InputForm'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld
+    JointDia,
+    InputForm
+  },
+  data () {
+    return {
+      nodeName: '',
+      linkMode: false
+    }
+  },
+  methods: {
+    addNode (name) {
+      this.nodeName = name
+    },
+    checkLink (checkLink) {
+      this.linkMode = checkLink
+    }
   }
 }
 </script>
@@ -19,10 +35,6 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-size: 90%;
 }
 </style>
