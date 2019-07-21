@@ -23,7 +23,8 @@
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^8.1.5",
     "vue-template-compiler": "^2.5.21",
-    "lodash.template": ">=4.5.0"
+    "lodash.template": ">=4.5.0",
+    "jquery": ">=3.4.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
