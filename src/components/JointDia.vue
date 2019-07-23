@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import joint from 'jointjs'
+import * as joint from 'jointjs'
 
 export default {
   name: 'JointDia',
