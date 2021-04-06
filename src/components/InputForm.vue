@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <input type="text" placeholder="new node name" v-model.trim="nodeName" v-on:keyup.ctrl.enter="add" />
+      <input type="text" placeholder="new node name" v-model.trim="nodeName" @keyup.enter="add" />
       <input type="button" v-on:click="add" value="add node" />
       <input type="checkbox" id="checkLink" v-model="linkMode" v-on:change="check" />
       <label for="checkLink">link mode</label>
@@ -10,25 +10,29 @@
 </template>
 
 <script>
-export default {
+import { defineComponent, ref } from 'vue'
+
+export default defineComponent({
   name: 'InputForm',
-  data () {
-    return {
-      nodeName: '',
-      linkMode: false
-    }
-  },
-  methods: {
-    add () {
-      if (!this.nodeName) {
+  setup(props, {emit}) {
+    const nodeName = ref('')
+    const linkMode = ref(false)
+    const add = () => {
+      if (!nodeName.value) {
         return
       }
-      this.$emit('addNode', this.nodeName)
-      this.nodeName = ''
-    },
-    check () {
-      this.$emit('checkLink', this.linkMode)
+      emit('addNode', nodeName.value)
+      nodeName.value = ''
+    }
+    const check = () => {
+      emit('checkLink', linkMode.value)
+    }
+    return {
+      nodeName,
+      linkMode,
+      add,
+      check
     }
   }
-}
+})
 </script>
